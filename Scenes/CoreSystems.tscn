@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd06f4pdxixv"]
+
+[ext_resource type="Script" path="res://Scripts/GodotCore/Menu/PageController.cs" id="1_pvnmf"]
+[ext_resource type="PackedScene" uid="uid://7gw370dnte04" path="res://Scenes/UI.tscn" id="2_maiou"]
+[ext_resource type="PackedScene" uid="uid://bsel2ktx0owb5" path="res://Scenes/Game.tscn" id="3_rouko"]
+
+[node name="CoreSystems" type="Node"]
+
+[node name="PageController" type="Node" parent="." node_paths=PackedStringArray("pages")]
+script = ExtResource("1_pvnmf")
+pages = []
+
+[node name="UIAnchor" type="Node" parent="."]
+
+[node name="UI" parent="UIAnchor" instance=ExtResource("2_maiou")]
+
+[node name="SceneAnchor" type="Node" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="SceneAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.752143, 2.8369)
+
+[node name="Game" parent="SceneAnchor" instance=ExtResource("3_rouko")]
