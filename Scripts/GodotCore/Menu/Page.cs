@@ -1,9 +1,10 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 namespace GodotCore {
     namespace Menu {
-        public partial class Page : Node2D
+        public partial class Page : Control
         {
             public static readonly string FLAG_ON = "On";
             public static readonly string FLAG_OFF = "Off";
@@ -28,8 +29,8 @@ namespace GodotCore {
             }
 
 
-            #region Unity Functions
-            private void OnEnable() {
+            #region Godot Functions
+            public override void _Ready() {
                 CheckAnimatorIntegrity();
             }
             #endregion
@@ -43,11 +44,22 @@ namespace GodotCore {
             /// <param name="_on">If true, we're animating the Page turning ON, else we're animating turning OFF</param>
             public void Animate(bool _on) {
                 if (useAnimation) {
-                    m_AnimationPlayer.Set("on", true);
+                    if (_on) {
+                        m_AnimationPlayer.Play("fadeIn");
+
+                    } else {
+                        m_AnimationPlayer.Play("fadeOut");
+                    }
+                    
+                    //m_AnimationPlayer.Set("on", true);
                     //m_Animator.SetBool("on", _on);
                     /*
                     StopCoroutine("AwaitAnimation");
                     StartCoroutine("AwaitAnimation", _on);*/
+                    WaitForAnimationEndAsync(_on).ContinueWith((t) => {
+                        Log("Animation finished");
+                    },
+                        TaskScheduler.FromCurrentSynchronizationContext());
                 }
                 else {
                     if (!_on) {
@@ -62,6 +74,25 @@ namespace GodotCore {
             #endregion
 
             #region Private Functions
+            async Task<bool> WaitForAnimationEndAsync(bool _on) {
+                var isPlaying = true;
+                while (isPlaying) {
+                    isPlaying = m_AnimationPlayer.CurrentAnimation == String.Empty;
+                    await Task.Delay(1000);
+                }
+                targetState = FLAG_NONE;
+
+                Log("Page [" + type + "] finished transitioning to " + (_on ? "on" : "off"));
+
+                if (!_on) {
+                    isOn = false;
+                    Visible = false;
+                }
+                else {
+                    isOn = true;
+                }
+                return true;
+            }
             /*
             private IEnumerator AwaitAnimation(bool _on) {
                 targetState = _on ? FLAG_ON : FLAG_OFF;
@@ -82,7 +113,7 @@ namespace GodotCore {
 
                 if (!_on) {
                     isOn = false;
-                    gameObject.SetActive(false);
+                    Visible = false;
                 }
                 else {
                     isOn = true;
@@ -93,7 +124,13 @@ namespace GodotCore {
             private void CheckAnimatorIntegrity() {
                 if (useAnimation) {
                     //m_Animator = GetComponent<Animator>();
-                    
+
+                    foreach (Node child in GetChildren()) {
+                        if(child.GetType() == typeof(AnimationPlayer)) {
+                            m_AnimationPlayer = (AnimationPlayer)child;
+                        }
+                    }
+
                     if (m_AnimationPlayer == null) {
                         LogWarning("Using animation for page [" + type + "] but Animator component is missing.");
                     }
@@ -106,7 +143,7 @@ namespace GodotCore {
             }
             private void LogWarning(string _msg) {
                 if (!debug) return;
-                GD.Print("{ WARNING } [Page]: " + _msg);
+                GD.PushWarning("[Page]: " + _msg);
             }
 
             #endregion*/

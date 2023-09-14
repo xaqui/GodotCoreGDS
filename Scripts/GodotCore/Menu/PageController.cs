@@ -1,9 +1,10 @@
 using Godot;
 using System.Collections;
+using System.Threading.Tasks;
 
 namespace GodotCore {
 	namespace Menu {
-        public partial class PageController : Node2D {
+        public partial class PageController : Node {
 
             public static PageController Instance;
 
@@ -34,6 +35,10 @@ namespace GodotCore {
             #endregion
 
             #region Public Functions
+
+            public void TestCrossLanguageScripting(string msg) {
+                Log(msg);
+            }
             public void TurnPageOn(PageType _type) {
                 if (_type == PageType.None) return;
                 if (!PageExists(_type)) {
@@ -67,8 +72,11 @@ namespace GodotCore {
                 if (_on != PageType.None) {
                     if (_waitForExit) {
                         Page _onPage = GetPage(_on);
-                //        StopCoroutine("WaitForPageExit");
-                //        StartCoroutine(WaitForPageExit(_onPage, _offPage));
+                        WaitForPageExitAsync(_onPage, _offPage).ContinueWith((t) => {
+                            Log("Page exit finished. Went from "+_offPage.type + " to "+ _onPage.type);
+                        },TaskScheduler.FromCurrentSynchronizationContext());
+                        //StopCoroutine("WaitForPageExit");
+                        //StartCoroutine(WaitForPageExit(_onPage, _offPage));
                     }
                     else {
                         TurnPageOn(_on);
@@ -89,12 +97,21 @@ namespace GodotCore {
 
             #region Private Functions
             /// <summary>Waits for the _off page to be finished turning off before turning on the _on page</summary>
-            private IEnumerator WaitForPageExit(Page _on, Page _off) {
+            /*private IEnumerator WaitForPageExit(Page _on, Page _off) {
                 // While animating, yield
                 while (_off.targetState != Page.FLAG_NONE) {
                     yield return null;
                 }
                 TurnPageOn(_on.type);
+            }
+            */
+            async Task<bool> WaitForPageExitAsync(Page _on, Page _off) {
+                var exited = false;
+                while (!exited) {
+                    exited = _off.targetState == Page.FLAG_NONE; 
+                    await Task.Delay(1000);
+                }
+                return exited;
             }
 
             private void RegisterAllPages() {
@@ -129,7 +146,7 @@ namespace GodotCore {
             }
             private void LogWarning(string _msg) {
                 if (!debug) return;
-                GD.Print("{ WARNING } [PageController]: " + _msg);
+                GD.PushWarning("[PageController]: " + _msg);
             }
 
             #endregion

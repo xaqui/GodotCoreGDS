@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://7gw370dnte04"]
+
+[ext_resource type="Script" path="res://Scripts/GodotCore/Menu/PageController.cs" id="1_x7eib"]
+[ext_resource type="PackedScene" uid="uid://bwg11laj8aeed" path="res://PrefabScenes/UI/Page.tscn" id="2_myjoy"]
+
+[sub_resource type="Animation" id="Animation_h2bar"]
+resource_name = "fadeIn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kxwg3"]
+resource_name = "fadeOut"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5nyd2"]
+_data = {
+"fadeIn": SubResource("Animation_h2bar"),
+"fadeOut": SubResource("Animation_kxwg3")
+}
+
+[node name="PageController" type="Control" node_paths=PackedStringArray("pages")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_x7eib")
+debug = true
+entryPage = 2
+pages = [NodePath("Menu"), NodePath("Loading")]
+
+[node name="Menu" parent="." instance=ExtResource("2_myjoy")]
+visible = false
+layout_mode = 1
+debug = true
+type = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.168627, 0.203922, 0.490196)
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Menu/CenterContainer"]
+layout_mode = 2
+text = "This is a menu"
+
+[node name="Loading" parent="." instance=ExtResource("2_myjoy")]
+layout_mode = 1
+debug = true
+type = 1
+useAnimation = true
+
+[node name="ColorRect" type="ColorRect" parent="Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Loading"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Loading/CenterContainer"]
+layout_mode = 2
+text = "Loading page"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Loading"]
+libraries = {
+"": SubResource("AnimationLibrary_5nyd2")
+}
