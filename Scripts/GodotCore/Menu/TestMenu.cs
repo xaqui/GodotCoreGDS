@@ -8,9 +8,9 @@ namespace GodotCore {
 
 			[Export] public PageController pageController;
 
-			#region Godot Functions
-            
-			public override void _UnhandledInput(InputEvent @event) {
+            #region Godot Functions
+
+            public override void _UnhandledInput(InputEvent @event) {
 				if(@event is InputEventKey eventKey) {
 					if(eventKey.Pressed) {
 						if(eventKey.Keycode == Key.F) {
@@ -23,12 +23,17 @@ namespace GodotCore {
                             pageController.TurnPageOff(PageType.Loading, PageType.Menu); // Crossfade
                         }
                         else if (eventKey.Keycode == Key.J) {
-                            pageController.TurnPageOff(PageType.Loading, PageType.Menu, true); // Turn off the first completely, then turn on the other
+                            pageController.TurnPageOff(PageType.Loading, PageType.Menu, true); 
+                        }
+                        else if (eventKey.Keycode == Key.K) {
+                            pageController.TurnPageOff(PageType.Loading, PageType.Test, false); // Turn off the first completely, then turn on the other
+                        }
+                        else if (eventKey.Keycode == Key.L) {
+                            pageController.TurnPageOff(PageType.Loading, PageType.Test, true);  // Crossfade
                         }
                     }
 				}
 			}
-            
 
 			#endregion
 

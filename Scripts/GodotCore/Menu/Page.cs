@@ -15,7 +15,6 @@ namespace GodotCore {
             [Export] public bool useAnimation;
             public string targetState { get; private set; }
 
-            //private Animator m_Animator;
             private AnimationPlayer m_AnimationPlayer;
             private bool m_IsOn;
 
@@ -38,8 +37,8 @@ namespace GodotCore {
             #region Public Functions 
             /// <summary>
             /// Plays an animation to turn ON or OFF this Page, then awaits for the animation to finish, 
-            /// and then turns ON or OFF the gameObject accordingly.
-            /// Requires that an Animator component with the corresponding animations and a Bool parameter "on".
+            /// and then turns ON or OFF the *visibility* of the Node accordingly.
+            /// Requires that an AnimationPlayer reference with the corresponding animations.
             /// </summary>
             /// <param name="_on">If true, we're animating the Page turning ON, else we're animating turning OFF</param>
             public void Animate(bool _on) {
@@ -51,15 +50,9 @@ namespace GodotCore {
                         m_AnimationPlayer.Play("fadeOut");
                     }
                     
-                    //m_AnimationPlayer.Set("on", true);
-                    //m_Animator.SetBool("on", _on);
-                    /*
-                    StopCoroutine("AwaitAnimation");
-                    StartCoroutine("AwaitAnimation", _on);*/
                     WaitForAnimationEndAsync(_on).ContinueWith((t) => {
                         Log("Animation finished");
-                    },
-                        TaskScheduler.FromCurrentSynchronizationContext());
+                    }, TaskScheduler.FromCurrentSynchronizationContext());
                 }
                 else {
                     if (!_on) {
@@ -93,38 +86,9 @@ namespace GodotCore {
                 }
                 return true;
             }
-            /*
-            private IEnumerator AwaitAnimation(bool _on) {
-                targetState = _on ? FLAG_ON : FLAG_OFF;
-
-                // Wait for the animator to reach target state
-                while (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName(targetState)) {
-                    yield return null;
-                }
-
-                // Wait for the animator to finish animating
-                while (m_Animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1) {
-                    yield return null;
-                }
-
-                targetState = FLAG_NONE;
-
-                Log("Page [" + type + "] finished transitioning to " + (_on ? "on" : "off"));
-
-                if (!_on) {
-                    isOn = false;
-                    Visible = false;
-                }
-                else {
-                    isOn = true;
-                }
-
-            }
-            */
+            
             private void CheckAnimatorIntegrity() {
                 if (useAnimation) {
-                    //m_Animator = GetComponent<Animator>();
-
                     foreach (Node child in GetChildren()) {
                         if(child.GetType() == typeof(AnimationPlayer)) {
                             m_AnimationPlayer = (AnimationPlayer)child;
@@ -146,7 +110,7 @@ namespace GodotCore {
                 GD.PushWarning("[Page]: " + _msg);
             }
 
-            #endregion*/
+            #endregion
 
         }
     }

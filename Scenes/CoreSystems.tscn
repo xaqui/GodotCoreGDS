@@ -7,6 +7,7 @@
 [node name="CoreSystems" type="Node"]
 
 [node name="PageController" parent="." instance=ExtResource("1_5bxxo")]
+entryPage = 0
 
 [node name="SceneAnchor" type="Node" parent="."]
 

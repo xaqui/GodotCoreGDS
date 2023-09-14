@@ -28,17 +28,10 @@ namespace GodotCore {
                     QueueFree();
                 }
             }
-
-            // Called every frame. 'delta' is the elapsed time since the previous frame.
-            public override void _Process(double delta) {
-            }
             #endregion
 
             #region Public Functions
 
-            public void TestCrossLanguageScripting(string msg) {
-                Log(msg);
-            }
             public void TurnPageOn(PageType _type) {
                 if (_type == PageType.None) return;
                 if (!PageExists(_type)) {
@@ -48,7 +41,7 @@ namespace GodotCore {
                 Page _page = GetPage(_type);
                 _page.Visible = true;
                 _page.Animate(true);
-
+                Log("Turned Page on: " + _type);
             }
 
             /// <summary>
@@ -75,14 +68,11 @@ namespace GodotCore {
                         WaitForPageExitAsync(_onPage, _offPage).ContinueWith((t) => {
                             Log("Page exit finished. Went from "+_offPage.type + " to "+ _onPage.type);
                         },TaskScheduler.FromCurrentSynchronizationContext());
-                        //StopCoroutine("WaitForPageExit");
-                        //StartCoroutine(WaitForPageExit(_onPage, _offPage));
                     }
                     else {
                         TurnPageOn(_on);
                     }
                 }
-
             }
 
             public bool PageIsOn(PageType _type) {
@@ -97,20 +87,13 @@ namespace GodotCore {
 
             #region Private Functions
             /// <summary>Waits for the _off page to be finished turning off before turning on the _on page</summary>
-            /*private IEnumerator WaitForPageExit(Page _on, Page _off) {
-                // While animating, yield
-                while (_off.targetState != Page.FLAG_NONE) {
-                    yield return null;
-                }
-                TurnPageOn(_on.type);
-            }
-            */
             async Task<bool> WaitForPageExitAsync(Page _on, Page _off) {
                 var exited = false;
                 while (!exited) {
                     exited = _off.targetState == Page.FLAG_NONE; 
                     await Task.Delay(1000);
                 }
+                TurnPageOn(_on.type);
                 return exited;
             }
 
@@ -152,7 +135,6 @@ namespace GodotCore {
             #endregion
 
         }
-
 
     }
 }
