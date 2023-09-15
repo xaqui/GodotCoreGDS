@@ -30,11 +30,6 @@ public partial class SceneController : Node
     private SceneLoadDelegate m_SceneLoadDelegate;
     private bool m_SceneIsLoading;
 
-    private void CheckPageControllerIntegrity() {
-        if(menu == null) {
-            LogWarning("Page Controller reference is missing.");
-        }
-    }
 
     private string currentSceneName {
         get {
@@ -89,6 +84,11 @@ public partial class SceneController : Node
 
     #region Private Functions
 
+    private void CheckPageControllerIntegrity() {
+        if(menu == null) {
+            LogWarning("Page Controller reference is missing.");
+        }
+    }
     private async void OnSceneLoaded(Node _scene) {
         if (m_TargetScene == SceneType.None) return; // Scene was loaded by a System other than SceneController, don't respond to that
         
@@ -119,7 +119,7 @@ public partial class SceneController : Node
                 await Task.Delay(1000);
             }
         }
-        string _targetScenePath = SceneTypeToPath(m_TargetScene);
+        string _targetScenePath = SceneNameToPath(SceneTypeToName(m_TargetScene));
         CallDeferred("DeferredGoToScene", _targetScenePath);
     }
 
@@ -174,24 +174,14 @@ public partial class SceneController : Node
         return true;
     }
 
-    private string SceneTypeToPath(SceneType _scene) {
-        switch (_scene) {
-            case SceneType.Level1: return LEVEL1_PATH;
-            case SceneType.Level2: return LEVEL2_PATH;
+    private string SceneNameToPath(string _sceneName) {
+        switch (_sceneName) {
+            case LEVEL1_NAME: return LEVEL1_PATH;
+            case LEVEL2_NAME: return LEVEL2_PATH;
             default:
-                LogWarning("Scene [" + _scene + "] does not contain a path for a valid scene.");
+                LogWarning("Node named [" + _sceneName + "] does not contain a path for a valid scene.");
                 return string.Empty;
-        }
-    }
-
-    private SceneType PathToSceneType(string _scene) {
-        switch (_scene) {
-            case LEVEL1_PATH: return SceneType.Level1;
-            case LEVEL2_PATH: return SceneType.Level2;
-            default:
-                LogWarning("Scene [" + _scene + "] does not contain a type for a valid scene.");
-                return SceneType.None;
-        }
+        } 
     }
 
     private SceneType NameToSceneType(string _sceneName) {

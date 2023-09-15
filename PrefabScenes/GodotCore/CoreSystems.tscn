@@ -17,6 +17,7 @@ entryPage = 0
 menu = NodePath("../PageController")
 
 [node name="SessionController" parent="." instance=ExtResource("3_wfbmw")]
+debug = true
 
 [node name="TestSystems" type="Node" parent="."]
 
@@ -28,5 +29,6 @@ pageController = NodePath("../../PageController")
 script = ExtResource("4_1byot")
 sceneController = NodePath("../../SceneController")
 
-[node name="TestSession" type="Node" parent="TestSystems"]
+[node name="TestSession" type="Node" parent="TestSystems" node_paths=PackedStringArray("sessionController")]
 script = ExtResource("6_7xiih")
+sessionController = NodePath("../../SessionController")

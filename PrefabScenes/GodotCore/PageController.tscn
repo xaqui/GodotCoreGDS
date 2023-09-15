@@ -83,6 +83,39 @@ grow_vertical = 2
 layout_mode = 2
 text = "This is a menu"
 
+[node name="Test" parent="." instance=ExtResource("2_myjoy")]
+visible = false
+layout_mode = 1
+debug = true
+type = 3
+useAnimation = true
+
+[node name="ColorRect" type="ColorRect" parent="Test"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.309804, 0.168627, 0.203922, 0.490196)
+
+[node name="CenterContainer" type="CenterContainer" parent="Test"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Test/CenterContainer"]
+layout_mode = 2
+text = "This is a TEST"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Test"]
+libraries = {
+"": SubResource("AnimationLibrary_5nyd2")
+}
+
 [node name="Loading" parent="." instance=ExtResource("2_myjoy")]
 visible = false
 modulate = Color(1, 1, 1, 0)
@@ -113,39 +146,6 @@ layout_mode = 2
 text = "Loading page"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Loading"]
-libraries = {
-"": SubResource("AnimationLibrary_5nyd2")
-}
-
-[node name="Test" parent="." instance=ExtResource("2_myjoy")]
-visible = false
-layout_mode = 1
-debug = true
-type = 3
-useAnimation = true
-
-[node name="ColorRect" type="ColorRect" parent="Test"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.309804, 0.168627, 0.203922, 0.490196)
-
-[node name="CenterContainer" type="CenterContainer" parent="Test"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Test/CenterContainer"]
-layout_mode = 2
-text = "This is a TEST"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Test"]
 libraries = {
 "": SubResource("AnimationLibrary_5nyd2")
 }
