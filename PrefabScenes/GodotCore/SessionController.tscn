@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drtk0hxvpql3v"]
+
+[ext_resource type="Script" path="res://Scripts/GodotCore/Session/SessionController.cs" id="1_duuwd"]
+
+[node name="SessionController" type="Node"]
+script = ExtResource("1_duuwd")
