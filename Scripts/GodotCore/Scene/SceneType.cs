@@ -2,8 +2,8 @@ namespace GodotCore {
     namespace Scene {
         public enum SceneType {
             None,
-            S1,
-            S2
+            Level1,
+            Level2
         }
     }
 }

@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="GodotCore"
-run/main_scene="res://PrefabScenes/GodotCore/CoreSystems.tscn"
+run/main_scene="res://Scenes/Level1.tscn"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CoreSystems="*res://PrefabScenes/GodotCore/CoreSystems.tscn"
 
 [dotnet]
 

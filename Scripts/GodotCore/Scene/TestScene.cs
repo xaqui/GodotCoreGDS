@@ -15,12 +15,14 @@ namespace GodotCore {
                 if (@event is InputEventKey eventKey) {
                     if (eventKey.Pressed) {
                         if (eventKey.Keycode == Key.M) {
-                            /*sceneController.Load(SceneType.Menu, (_scene) => {
-                                Debug.Log("Scene [" + _scene + "] loaded from Test script!");
-                            }, false, PageType.Loading);*/
+                            sceneController.Load(SceneType.Level2, (_scene) => {
+                                GD.Print("Scene [" + _scene + "] loaded from Test script!");
+                            }, false, PageType.Loading);
                         }
                         else if (eventKey.Keycode == Key.G) {
-                            //sceneController.Load(SceneType.Game);
+                            sceneController.Load(SceneType.Level1, (_scene) => {
+                                GD.Print("Scene [" + _scene + "] loaded from Test script!");
+                            });
                         }
                        
                     }
@@ -28,7 +30,6 @@ namespace GodotCore {
             }
 
             #endregion
-
         }
     }
 }
