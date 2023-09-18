@@ -1,10 +1,8 @@
 using Godot;
-using System;
 
 namespace GodotCore {
 	namespace Menu {
-		public partial class TestMenu : Node
-		{
+		public partial class TestMenu : Node{
 
 			[Export] public PageController pageController;
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://hdhalqt1bffw"]
+
+[ext_resource type="Script" path="res://Scripts/GodotCore/Data/DataPersistanceController.cs" id="1_vv5go"]
+
+[node name="DataPersistanceController" type="Node"]
+script = ExtResource("1_vv5go")
+debug = true
