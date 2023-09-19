@@ -75,17 +75,14 @@ namespace GodotCore {
 
             private List<IDataPersistance> FindAllDataPersistanceObjects() {
                 List<IDataPersistance> dataPersistanceObjects = new List<IDataPersistance>();
-
+                // This is a bit hacky. I'm trying to use FindChildren(IDataPersistance) directly but returns an empty array
+                // This will do the trick, even if it is slightly less performant
                 Godot.Collections.Array<Node> dataPersistanceObjectsArray = GetTree().Root.FindChildren("*","Node",true,false);
-                Log("COUNT: "+dataPersistanceObjectsArray.Count);
-
                 foreach (Node child in dataPersistanceObjectsArray) {
                     if (typeof(IDataPersistance).IsAssignableFrom(child.GetType())) {
-                        Log(child.Name);
                         dataPersistanceObjects.Add(child as IDataPersistance);
                     }
                 }
-
                 return new List<IDataPersistance>(dataPersistanceObjects);
             }
             private void Log(string _msg) {

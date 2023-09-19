@@ -8,14 +8,13 @@ namespace GodotCore {
 
             public static PageController Instance;
 
-            [Export] public bool debug; // Choose wether or not use logging on this system
+            [Export] public bool debug;
             [Export] public PageType entryPage;
             [Export] public Page[] pages;
 
             private Hashtable m_Pages; // Relation between PageTypes and Pages
 
             #region Godot Functions
-            // Called when the node enters the scene tree for the first time.
             public override void _Ready() {
                 if (Instance == null) {
                     Instance = this;

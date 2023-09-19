@@ -1,6 +1,5 @@
 using Godot;
-using GodotCore.Menu;
-using GodotCore.Scene;
+
 namespace GodotCore {
     namespace Session {
         public partial class TestSession : Node

@@ -23,7 +23,6 @@ public partial class Counter : Node, IDataPersistance
     #region Data Persistance Interface
     public void LoadData(GameData data) {
 		counter = data.counter;
-        GD.Print("Test");
     }
 
     public void SaveData(GameData data) {
