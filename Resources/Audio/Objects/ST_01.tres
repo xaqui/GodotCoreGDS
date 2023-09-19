@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AudioObject" load_steps=3 format=3 uid="uid://damgrw0mqaa82"]
+
+[ext_resource type="Script" path="res://Scripts/GodotCore/Audio/AudioObject.cs" id="1_tnffp"]
+[ext_resource type="AudioStream" uid="uid://0dwg727vldqs" path="res://Audio/BGM/church_placeholder.wav" id="1_wkw4c"]
+
+[resource]
+script = ExtResource("1_tnffp")
+type = 1
+audioStream = ExtResource("1_wkw4c")

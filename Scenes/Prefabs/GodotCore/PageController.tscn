@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://7gw370dnte04"]
 
-[ext_resource type="Script" path="res://Scripts/GodotCore/Menu/PageController.cs" id="1_x7eib"]
-[ext_resource type="PackedScene" uid="uid://bwg11laj8aeed" path="res://PrefabScenes/GodotCore/Page.tscn" id="2_myjoy"]
-[ext_resource type="Script" path="res://Scripts/GodotCore/Counter.cs" id="3_1b73o"]
+[ext_resource type="Script" path="res://Scripts/GodotCore/Menu/PageController.cs" id="1_hymv8"]
+[ext_resource type="PackedScene" uid="uid://bwg11laj8aeed" path="res://Scenes/Prefabs/GodotCore/Page.tscn" id="2_s8l5s"]
+[ext_resource type="Script" path="res://Scripts/GodotCore/Counter.cs" id="3_1mqh5"]
 
 [sub_resource type="Animation" id="Animation_h2bar"]
 resource_name = "fadeIn"
@@ -47,17 +47,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_x7eib")
+script = ExtResource("1_hymv8")
 debug = true
 entryPage = 2
 pages = [NodePath("None"), NodePath("Menu"), NodePath("Loading"), NodePath("Test")]
 
-[node name="None" parent="." instance=ExtResource("2_myjoy")]
+[node name="None" parent="." instance=ExtResource("2_s8l5s")]
 visible = false
 layout_mode = 1
 debug = true
 
-[node name="Menu" parent="." instance=ExtResource("2_myjoy")]
+[node name="Menu" parent="." instance=ExtResource("2_s8l5s")]
 layout_mode = 1
 debug = true
 type = 2
@@ -93,10 +93,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Counter" type="Node" parent="Menu/CenterContainer/VBoxContainer/L_counter" node_paths=PackedStringArray("lCounter")]
-script = ExtResource("3_1b73o")
+script = ExtResource("3_1mqh5")
 lCounter = NodePath("..")
 
-[node name="Test" parent="." instance=ExtResource("2_myjoy")]
+[node name="Test" parent="." instance=ExtResource("2_s8l5s")]
 visible = false
 layout_mode = 1
 debug = true
@@ -129,7 +129,7 @@ libraries = {
 "": SubResource("AnimationLibrary_5nyd2")
 }
 
-[node name="Loading" parent="." instance=ExtResource("2_myjoy")]
+[node name="Loading" parent="." instance=ExtResource("2_s8l5s")]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1

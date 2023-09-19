@@ -19,11 +19,11 @@ namespace GodotCore {
                                 GD.Print("Scene [" + _scene + "] loaded from Test script!");
                             }, false, PageType.Loading);
                         }
-                        else if (eventKey.Keycode == Key.G) {
+                        /*else if (eventKey.Keycode == Key.G) {
                             sceneController.Load(SceneType.Level1, (_scene) => {
                                 GD.Print("Scene [" + _scene + "] loaded from Test script!");
                             });
-                        }
+                        }*/
                        
                     }
                 }

@@ -14,7 +14,7 @@ namespace GodotCore {
 						if(eventKey.Keycode == Key.F) {
                             pageController.TurnPageOn(PageType.Loading);
                         }
-                        else if (eventKey.Keycode == Key.G) {
+                        else if (eventKey.Keycode == Key.Y) {
                             pageController.TurnPageOff(PageType.Loading);
                         }
                         else if (eventKey.Keycode == Key.H) {

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-CoreSystems="*res://PrefabScenes/GodotCore/CoreSystems.tscn"
+CoreSystems="*res://Scenes/Prefabs/GodotCore/CoreSystems.tscn"
 
 [dotnet]
 
