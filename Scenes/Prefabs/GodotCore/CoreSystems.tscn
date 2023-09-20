@@ -28,14 +28,17 @@ debug = true
 
 [node name="TestSystems" type="Node" parent="."]
 
-[node name="TestMenu" type="Node" parent="TestSystems"]
+[node name="TestMenu" type="Node" parent="TestSystems" node_paths=PackedStringArray("pageController")]
 script = ExtResource("5_02cqd")
+pageController = NodePath("../../PageController")
 
-[node name="TestScene" type="Node" parent="TestSystems"]
+[node name="TestScene" type="Node" parent="TestSystems" node_paths=PackedStringArray("sceneController")]
 script = ExtResource("6_h1gjr")
+sceneController = NodePath("../../SceneController")
 
-[node name="TestSession" type="Node" parent="TestSystems"]
+[node name="TestSession" type="Node" parent="TestSystems" node_paths=PackedStringArray("sessionController")]
 script = ExtResource("7_8nps4")
+sessionController = NodePath("../../SessionController")
 
 [node name="TestDataPersistance" type="Node" parent="TestSystems" node_paths=PackedStringArray("dataPersistanceController")]
 script = ExtResource("8_tw0cg")

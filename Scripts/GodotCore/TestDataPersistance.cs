@@ -12,10 +12,10 @@ namespace GodotCore {
             public override void _UnhandledInput(InputEvent @event) {
                 if (@event is InputEventKey eventKey) {
                     if (eventKey.Pressed) {
-                        if (eventKey.Keycode == Key.S) {
+                        if (eventKey.Keycode == Key.W) {
                             dataPersistanceController.SaveGame();
                         }
-                        else if (eventKey.Keycode == Key.L) {
+                        else if (eventKey.Keycode == Key.S) {
                             dataPersistanceController.LoadGame();
                         }
                     }

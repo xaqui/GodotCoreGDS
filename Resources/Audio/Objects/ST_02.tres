@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="AudioObject" load_steps=3 format=3 uid="uid://degok0xodtltm"]
 
 [ext_resource type="Script" path="res://Scripts/GodotCore/Audio/AudioObject.cs" id="1_0ko0j"]
-[ext_resource type="AudioStream" uid="uid://bp44kvi8wvirb" path="res://Audio/BGM/exploration.mp3" id="1_bp8dc"]
+[ext_resource type="AudioStream" uid="uid://dm712ihtcgm5b" path="res://Audio/ST/test_song2.wav" id="1_eybkx"]
 
 [resource]
 script = ExtResource("1_0ko0j")
 type = 2
-audioStream = ExtResource("1_bp8dc")
+audioStream = ExtResource("1_eybkx")

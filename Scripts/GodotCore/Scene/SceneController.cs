@@ -1,9 +1,7 @@
 using Godot;
 using GodotCore.Menu;
 using GodotCore.Scene;
-using Godot.Collections;
 using System.Threading.Tasks;
-using System;
 
 public partial class SceneController : Node
 {

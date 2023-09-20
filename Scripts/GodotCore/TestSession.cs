@@ -9,8 +9,8 @@ namespace GodotCore {
             public override void _UnhandledInput(InputEvent @event) {
                 if (@event is InputEventKey eventKey) {
                     if (eventKey.Pressed) {
-                        if (eventKey.Keycode == Key.I) {
-                            GD.Print(sessionController.fps);
+                        if (eventKey.Keycode == Key.Q) {
+                            GD.Print("FPS: "+sessionController.fps);
                         }
 
                     }
