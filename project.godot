@@ -10,15 +10,15 @@ config_version=5
 
 [application]
 
-config/name="GodotCore"
+config/name="GodotCoreGDS"
 run/main_scene="res://Scenes/Level1.tscn"
 config/use_custom_user_dir=true
-config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-CoreSystems="*res://Scenes/Prefabs/GodotCore/CoreSystems.tscn"
+CoreSystems="*res://scenes/prefabs/godot_core/core_systems.tscn"
 
 [dotnet]
 

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bioqvy307jjf6"]
+
+[ext_resource type="PackedScene" uid="uid://hshm34sjl626" path="res://scenes/prefabs/godot_core/page_controller.tscn" id="1_61rwi"]
+[ext_resource type="Script" path="res://scripts/godot_core/test_menu.gd" id="2_xfqcw"]
+
+[node name="CoreSystems" type="Node"]
+
+[node name="PageController" parent="." instance=ExtResource("1_61rwi")]
+
+[node name="TestSystems" type="Node" parent="."]
+
+[node name="TestMenu" type="Node" parent="TestSystems" node_paths=PackedStringArray("page_controller")]
+script = ExtResource("2_xfqcw")
+page_controller = NodePath("../../PageController")
