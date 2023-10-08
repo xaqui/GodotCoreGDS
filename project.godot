@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="GodotCoreGDS"
-run/main_scene="res://Scenes/Level1.tscn"
-config/use_custom_user_dir=true
-config/features=PackedStringArray("4.1", "GL Compatibility")
+run/main_scene="res://scenes/level_1.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -22,9 +21,4 @@ CoreSystems="*res://scenes/prefabs/godot_core/core_systems.tscn"
 
 [dotnet]
 
-project/assembly_name="GodotCore"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+project/assembly_name="GodotCoreGDS"

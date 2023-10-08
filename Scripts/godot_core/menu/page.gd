@@ -7,7 +7,7 @@ const FLAG_OFF = "Off"
 const FLAG_NONE = "None"
 
 @export var debug : bool
-@export var type : Page_Type.type
+@export var type : PageType.type
 @export var use_animation : bool
 
 var target_state : String
@@ -45,7 +45,7 @@ func wait_for_animation_end(_on : bool):
 		await get_tree().create_timer(1).timeout
 	target_state = FLAG_NONE
 	
-	log_msg(str("Page [",Page_Type.type.keys()[type],"] finished transitioning to ", "on" if(_on) else "off"))
+	log_msg(str("Page [",PageType.type.keys()[type],"] finished transitioning to ", "on" if(_on) else "off"))
 	
 	if(!_on):
 		is_on = false
@@ -60,7 +60,7 @@ func check_animator_integrity():
 			if(child.is_class("AnimationPlayer")):
 				animation_player = child
 		if(animation_player == null):
-			log_warning(str("Using animation for page [",Page_Type.type.keys()[type],"] but Animator component is missing."))
+			log_warning(str("Using animation for page [",PageType.type.keys()[type],"] but Animator component is missing."))
 
 func log_msg(msg):
 	if(!debug): return

@@ -1,4 +1,4 @@
-class_name Page_Type
+class_name PageType
 enum type{
 	none,
 	loading,

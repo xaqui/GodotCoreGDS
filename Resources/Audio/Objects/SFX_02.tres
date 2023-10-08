@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="AudioObject" load_steps=3 format=3 uid="uid://pc3y540epf51"]
-
-[ext_resource type="AudioStream" uid="uid://ca0ryxxbsgqb6" path="res://Audio/SFX/test_sfx2.wav" id="1_gnoii"]
-[ext_resource type="Script" path="res://Scripts/GodotCore/Audio/AudioObject.cs" id="1_pddo1"]
-
-[resource]
-script = ExtResource("1_pddo1")
-type = 4
-audioStream = ExtResource("1_gnoii")
