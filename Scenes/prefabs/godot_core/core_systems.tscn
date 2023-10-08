@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnby5pj6do3mb"]
+[gd_scene load_steps=4 format=3 uid="uid://bnby5pj6do3mb"]
 
 [ext_resource type="PackedScene" uid="uid://qfokrsvgxyie" path="res://scenes/prefabs/godot_core/page_controller.tscn" id="1_o6rek"]
 [ext_resource type="Script" path="res://scripts/godot_core/test_menu.gd" id="1_sgt6l"]
+[ext_resource type="PackedScene" uid="uid://bm0or1gs68eba" path="res://scenes/prefabs/godot_core/scene_controller.tscn" id="2_emjqp"]
 
 [node name="CoreSystems" type="Node"]
 
 [node name="PageController" parent="." instance=ExtResource("1_o6rek")]
+
+[node name="SceneController" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_emjqp")]
+menu = NodePath("../PageController")
 
 [node name="TestSystems" type="Node" parent="."]
 
