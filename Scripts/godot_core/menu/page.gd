@@ -21,7 +21,6 @@ func _ready():
 
 # Public Functions
 func animate(_on : bool):
-	pass
 	if(use_animation):
 		if(_on):
 			animation_player.play("fadeIn")
