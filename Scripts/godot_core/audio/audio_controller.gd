@@ -38,7 +38,34 @@ func generate_audio_table():
 				log_msg(str("Registering audio  [",AudioType.type.keys()[obj.type],"] Success"))
 
 func run_audio_job(_job : AudioJob):
-	pass
+	await get_tree().create_timer(_job.delay_seconds).timeout
+	
+	var track = audio_table[_job.audio_type]
+	
+	match(_job.action):
+		AudioJob.action.START:
+			track.stream = get_audio_stream_from_audio_track(_job.audio_type, track)
+			track.play()
+		AudioJob.action.STOP:
+			if(!_job.fade):
+				track.stop()
+		AudioJob.action.RESTART:
+			track.stop()
+			track.play()
+			
+	if(_job.fade):
+		var initial_value = -80.0 if _job.audio_action == AudioJob.action.START || _job.audio_action == AudioJob.action.RESTART else 0.0
+		var target_value = 0.0 if initial_value == 80.0 else -80
+		var duration_seconds = 2.0
+		var timer = 0.0
+		while(timer <= duration_seconds):
+			track.volume_db = lerpf(initial_value,target_value, timer / duration_seconds)
+			timer += get_process_delta_time()
+		if(_job.audio_action == AudioJob.action.STOP):
+			track.stop()
+	job_table.remove(_job.audio_type)
+	log_msg(str("Job Count: ",job_table.size()))
+	
 	
 func add_job(_job : AudioJob):
 	pass
