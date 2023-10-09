@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dkt01yfltskn7"]
+
+[ext_resource type="Script" path="res://scripts/godot_core/data/data_controller.gd" id="1_6n4qv"]
+
+[node name="DataController" type="Node"]
+script = ExtResource("1_6n4qv")
+debug = true
