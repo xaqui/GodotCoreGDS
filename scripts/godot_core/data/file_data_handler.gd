@@ -21,16 +21,17 @@ func load_data() -> GameData:
 	
 	if not FileAccess.file_exists(full_path):
 		return null
-	
 	var file := FileAccess.open(full_path, FileAccess.READ_WRITE)
 	if(file == null):
 		log_error(error_string(FileAccess.get_open_error()))
 		return null
 	
-	data_to_load = file.get_as_text()
+	data_to_load = file.get_buffer(file.get_length())
+	file.close()
+	
 	if(use_encryption):
 		data_to_load = encrypt_decrypt(data_to_load)
-	file.close()
+		data_to_load = data_to_load.get_string_from_ascii()
 
 	var json = JSON.new()
 	var error = json.parse(data_to_load)
@@ -53,21 +54,22 @@ func save_data(game_data : GameData):
 		
 	var data_to_write = JSON.stringify(game_data.data)
 	if(use_encryption):
-		data_to_write = encrypt_decrypt(data_to_write)
+		data_to_write = encrypt_decrypt(data_to_write.to_ascii_buffer())
 	
-	var file := FileAccess.open(full_path, FileAccess.WRITE)
+	var file := FileAccess.open(full_path, FileAccess.WRITE_READ)
 	if(file == null):
 		log_error(error_string(FileAccess.get_open_error()))
 		
-	file.store_string(data_to_write)
+	file.store_buffer(data_to_write)
 	file.close()
 
 # Private Functions
-func encrypt_decrypt(data : String) -> String:
-	var modified_data = ""
-	for i in range(data.length()):
-		modified_data += str(char(data.unicode_at(i) ^ encryption_codeword.unicode_at(i%encryption_codeword.length())))
-	return modified_data
+## XOR encryption
+func encrypt_decrypt(data : PackedByteArray) -> PackedByteArray:
+	var modified_data = []
+	for i in range(data.size()):
+		modified_data.append(data[i] ^ encryption_codeword.unicode_at(i%encryption_codeword.length()))
+	return PackedByteArray(modified_data)
 
 func log_msg(msg):
 	if(debug):

@@ -21,7 +21,7 @@ func load_game():
 	game_data = file_handler.load_data()
 	# If no data can be loaded, initialize to new game
 	if(game_data == null):
-		log_warning("No save data was found. Initializing to defaults.")
+		log_msg("No save data was found. Initializing to defaults.")
 		new_game()
 	# Push the loaded data to the other scripts
 	get_tree().call_group("data_persistance_objects","load_data",game_data)
@@ -36,7 +36,7 @@ func save_game():
 
 # Private Functions
 func configure():
-	file_handler = FileDataHandler.new(DATA_PATH,SAVE_FILENAME, false, debug)
+	file_handler = FileDataHandler.new(DATA_PATH,SAVE_FILENAME, true, debug)
 
 func log_msg(msg):
 	if(!debug): return

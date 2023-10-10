@@ -4,7 +4,6 @@ extends Node
 
 func _ready():
 	data_controller.load_game()
-	
 
 func _unhandled_input(event):
 	if event is InputEventKey:

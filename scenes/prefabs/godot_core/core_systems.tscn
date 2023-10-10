@@ -11,10 +11,12 @@
 [node name="CoreSystems" type="Node"]
 
 [node name="PageController" parent="." instance=ExtResource("1_o6rek")]
+debug = false
 
 [node name="DataController" parent="." instance=ExtResource("3_fh66m")]
 
 [node name="SceneController" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_emjqp")]
+debug = false
 menu = NodePath("../PageController")
 
 [node name="TestSystems" type="Node" parent="."]
