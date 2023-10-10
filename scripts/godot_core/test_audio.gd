@@ -8,8 +8,7 @@ func _unhandled_input(event):
 			audio_controller.play_audio(AudioType.type.ST_01, true)
 		elif event.pressed and event.keycode == KEY_G:
 			audio_controller.stop_audio(AudioType.type.ST_01, true)
-			await get_tree().create_timer(2.1).timeout
-			audio_controller.play_audio(AudioType.type.ST_02, true)
+			audio_controller.play_audio(AudioType.type.ST_02, true,3)
 		elif event.pressed and event.keycode == KEY_B:
 			audio_controller.restart_audio(AudioType.type.ST_01, true)
 		elif event.pressed and event.keycode == KEY_Y:
