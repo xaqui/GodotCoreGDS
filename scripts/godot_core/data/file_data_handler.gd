@@ -45,6 +45,7 @@ func load_data() -> GameData:
 		return null
 	return GameData.new(loaded_data)
 
+
 func save_data(game_data : GameData):
 	var full_path = data_dir_path+"/"+data_filename
 	

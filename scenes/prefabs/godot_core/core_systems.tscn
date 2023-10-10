@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnby5pj6do3mb"]
+[gd_scene load_steps=10 format=3 uid="uid://bnby5pj6do3mb"]
 
 [ext_resource type="PackedScene" uid="uid://qfokrsvgxyie" path="res://scenes/prefabs/godot_core/page_controller.tscn" id="1_o6rek"]
 [ext_resource type="Script" path="res://scripts/godot_core/test_menu.gd" id="1_sgt6l"]
 [ext_resource type="PackedScene" uid="uid://bm0or1gs68eba" path="res://scenes/prefabs/godot_core/scene_controller.tscn" id="2_emjqp"]
 [ext_resource type="PackedScene" uid="uid://dkt01yfltskn7" path="res://scenes/prefabs/godot_core/data_controller.tscn" id="3_fh66m"]
+[ext_resource type="PackedScene" uid="uid://c0kfr543gbasg" path="res://scenes/prefabs/godot_core/audio_controller.tscn" id="4_sk4m6"]
 [ext_resource type="Script" path="res://scripts/godot_core/test_scene.gd" id="4_xc8fm"]
 [ext_resource type="Script" path="res://scripts/godot_core/test_data.gd" id="6_ucf8g"]
 [ext_resource type="Script" path="res://scripts/godot_core/counter.gd" id="7_x8sx5"]
+[ext_resource type="Script" path="res://scripts/godot_core/test_audio.gd" id="9_jt2l3"]
 
 [node name="CoreSystems" type="Node"]
 
@@ -14,10 +16,13 @@
 debug = false
 
 [node name="DataController" parent="." instance=ExtResource("3_fh66m")]
+debug = false
 
 [node name="SceneController" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_emjqp")]
 debug = false
 menu = NodePath("../PageController")
+
+[node name="AudioController" parent="." instance=ExtResource("4_sk4m6")]
 
 [node name="TestSystems" type="Node" parent="."]
 
@@ -57,3 +62,7 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "COUNTER"
+
+[node name="TestAudio" type="Node" parent="TestSystems" node_paths=PackedStringArray("audio_controller")]
+script = ExtResource("9_jt2l3")
+audio_controller = NodePath("../../AudioController")

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AudioObject" load_steps=3 format=3 uid="uid://r5frqxn4b56l"]
+
+[ext_resource type="AudioStream" uid="uid://dxdosb8lqmfma" path="res://audio/ST/test_song2.wav" id="1_56kb5"]
+[ext_resource type="Script" path="res://scripts/godot_core/audio/audio_object.gd" id="1_78go2"]
+
+[resource]
+script = ExtResource("1_78go2")
+type = 2
+audio_stream = ExtResource("1_56kb5")

@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://c0kfr543gbasg"]
+[gd_scene load_steps=7 format=3 uid="uid://c0kfr543gbasg"]
 
-[node name="AudioController" type="Node"]
+[ext_resource type="Script" path="res://scripts/godot_core/audio/audio_controller.gd" id="1_tka07"]
+[ext_resource type="Script" path="res://scripts/godot_core/audio/audio_track.gd" id="2_flrv0"]
+[ext_resource type="Resource" uid="uid://ddv1n7grcxte7" path="res://resources/audio/audio_objects/ST_01.tres" id="3_15sgb"]
+[ext_resource type="Resource" uid="uid://r5frqxn4b56l" path="res://resources/audio/audio_objects/ST_02.tres" id="4_h0xmb"]
+[ext_resource type="Resource" uid="uid://c24guim5sqtfw" path="res://resources/audio/audio_objects/SFX_01.tres" id="5_h172k"]
+[ext_resource type="Resource" uid="uid://k5a41k4np7sl" path="res://resources/audio/audio_objects/SFX_02.tres" id="6_rkg2m"]
+
+[node name="AudioController" type="Node" node_paths=PackedStringArray("tracks")]
+script = ExtResource("1_tka07")
+debug = true
+tracks = [NodePath("AudioTrack"), NodePath("AudioTrack2")]
+
+[node name="AudioTrack" type="AudioStreamPlayer" parent="."]
+script = ExtResource("2_flrv0")
+audio = Array[Resource("res://scripts/godot_core/audio/audio_object.gd")]([ExtResource("3_15sgb"), ExtResource("4_h0xmb")])
+
+[node name="AudioTrack2" type="AudioStreamPlayer" parent="."]
+script = ExtResource("2_flrv0")
+audio = Array[Resource("res://scripts/godot_core/audio/audio_object.gd")]([ExtResource("5_h172k"), ExtResource("6_rkg2m")])
