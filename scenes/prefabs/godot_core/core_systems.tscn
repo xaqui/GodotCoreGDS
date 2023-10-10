@@ -1,26 +1,57 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnby5pj6do3mb"]
+[gd_scene load_steps=8 format=3 uid="uid://bnby5pj6do3mb"]
 
 [ext_resource type="PackedScene" uid="uid://qfokrsvgxyie" path="res://scenes/prefabs/godot_core/page_controller.tscn" id="1_o6rek"]
 [ext_resource type="Script" path="res://scripts/godot_core/test_menu.gd" id="1_sgt6l"]
 [ext_resource type="PackedScene" uid="uid://bm0or1gs68eba" path="res://scenes/prefabs/godot_core/scene_controller.tscn" id="2_emjqp"]
 [ext_resource type="PackedScene" uid="uid://dkt01yfltskn7" path="res://scenes/prefabs/godot_core/data_controller.tscn" id="3_fh66m"]
 [ext_resource type="Script" path="res://scripts/godot_core/test_scene.gd" id="4_xc8fm"]
+[ext_resource type="Script" path="res://scripts/godot_core/test_data.gd" id="6_ucf8g"]
+[ext_resource type="Script" path="res://scripts/godot_core/counter.gd" id="7_x8sx5"]
 
 [node name="CoreSystems" type="Node"]
 
 [node name="PageController" parent="." instance=ExtResource("1_o6rek")]
 
+[node name="DataController" parent="." instance=ExtResource("3_fh66m")]
+
 [node name="SceneController" parent="." node_paths=PackedStringArray("menu") instance=ExtResource("2_emjqp")]
 menu = NodePath("../PageController")
 
-[node name="DataController" parent="." instance=ExtResource("3_fh66m")]
-
 [node name="TestSystems" type="Node" parent="."]
+
+[node name="TestScene" type="Node" parent="TestSystems" node_paths=PackedStringArray("scene_controller")]
+script = ExtResource("4_xc8fm")
+scene_controller = NodePath("../../SceneController")
 
 [node name="TestMenu" type="Node" parent="TestSystems" node_paths=PackedStringArray("page_controller")]
 script = ExtResource("1_sgt6l")
 page_controller = NodePath("../../PageController")
 
-[node name="TestScene" type="Node" parent="TestSystems" node_paths=PackedStringArray("scene_controller")]
-script = ExtResource("4_xc8fm")
-scene_controller = NodePath("../../SceneController")
+[node name="TestData" type="Node" parent="TestSystems" node_paths=PackedStringArray("data_controller")]
+script = ExtResource("6_ucf8g")
+data_controller = NodePath("../../DataController")
+
+[node name="Counter" type="Control" parent="TestSystems/TestData" node_paths=PackedStringArray("label") groups=["data_persistance_objects"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_x8sx5")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="TestSystems/TestData/Counter"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "COUNTER"
