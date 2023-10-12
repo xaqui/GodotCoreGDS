@@ -31,7 +31,7 @@ func load_data() -> GameData:
 	
 	if(use_encryption):
 		data_to_load = encrypt_decrypt(data_to_load)
-		data_to_load = data_to_load.get_string_from_ascii()
+	data_to_load = data_to_load.get_string_from_ascii()
 
 	var json = JSON.new()
 	var error = json.parse(data_to_load)
@@ -61,7 +61,10 @@ func save_data(game_data : GameData):
 	if(file == null):
 		log_error(error_string(FileAccess.get_open_error()))
 		
-	file.store_buffer(data_to_write)
+	if(use_encryption):
+		file.store_buffer(data_to_write)
+	else:
+		file.store_string(data_to_write)
 	file.close()
 
 # Private Functions
